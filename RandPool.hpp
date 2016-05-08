@@ -15,28 +15,28 @@ using namespace CryptoPP;
 
 typedef byte RandSeed[64];
 
-class RandPool 
+class RandPool
 {
 public:
-  RandPool (RandSeed *initSeed);
-  ~RandPool ();
-  
-  template <typename T>
-  T getRand ();
-  void getRandArray (uint32_t arraySize);
-  RandSeed* getSubObjectSeed ();
+    RandPool (RandSeed *initSeed);
+    ~RandPool ();
 
-private:  
-  static unsigned int objectCount;
-  
-  static const byte emptyIV[Salsa20::IV_LENGTH];
-  static const byte emptyNonce[8];
-  static const byte emptyMessage[64];
-  
-  RandSeed childKey;
-  RandSeed streamCipherKey;
-  //class CryptoPP::Salsa20 streamCipher;
-  Salsa20::Encryption *streamCipher;
+    template <typename T>
+    T getRand ();
+    void getRandArray (uint32_t arraySize);
+    RandSeed* getSubObjectSeed ();
+
+private:
+    static unsigned int objectCount;
+
+    static const byte emptyIV[Salsa20::IV_LENGTH];
+    static const byte emptyNonce[8];
+    static const byte emptyMessage[64];
+
+    RandSeed childKey;
+    RandSeed streamCipherKey;
+    //class CryptoPP::Salsa20 streamCipher;
+    Salsa20::Encryption *streamCipher;
 };
 
 #endif
